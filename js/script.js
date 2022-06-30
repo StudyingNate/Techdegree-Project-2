@@ -79,7 +79,7 @@ const addPagination = (list) => {
       // create the elements needed to display the pagination button
       let paginationButton = `
       <li>
-         <button type="button" class="active">${i}</button>
+         <button type="button">${i}</button>
       </li>
     `;
 
@@ -99,7 +99,6 @@ const addPagination = (list) => {
          if (e.target.tagName === "BUTTON") {
             let activeButton = document.querySelector(".active");
             activeButton.className = "";
-
 
             // add the active class to the clicked button
             e.target.className = "active";
