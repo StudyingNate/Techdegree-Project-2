@@ -12,34 +12,44 @@ For assistance:
 */
 
 //Variable to cap the total amount of students per page 
-const students_per_page = 9;
+const studentPerPage = 9;
 /*
 Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
-function showPage(list, page) {
+const showPage = (list, page) => {
 
    // create two variables which will represent the index for the first and last student on the page
-      const start_index = (page * students_per_page) - students_per_page;
-      const end_index = (page * students_per_page);
+      const startIndex = (page * studentPerPage) - studentPerPage;
+      const endIndex = (page * studentPerPage);
   // select the element with a class of `student-list` and assign it to a variable
-      const student_list = document.querySelector('.student-list');
+      const studentList = document.querySelector('.student-list');
   // set the innerHTML property of the variable you just created to an empty string
-      student_list.innerHTML = "";
+      studentList.innerHTML = "";
       
 
   // loop over the length of the `list` parameter
-  for (let i = 0; i < list.length; i++) {
+   for (let i = 0; i < list.length; i++) {
    // inside the loop create a conditional to display the proper students
-      if (i >= start_index && i < end_index) {
+      if (i >= startIndex && i < endIndex) {
       // inside the conditional:
         // create the elements needed to display the student information
+        let studentInfo = ` <li class="student-item cf">
+        <div class="student-details">
+          <img class="avatar" src= ${list[i].picture.large} alt="Profile Picture">
+          <h3>${list[i].name.first} ${list[i].name.last}</h3>
+          <span class="email">${list[i].email}</span>
+        </div>
+        <div class="joined-details">
+          <span class="date">Joined ${list[i].registered.date}</span>
+        </div>
+      </li>`
         // insert the above elements
+        studentList.insertAdjacentHTML("beforeend", studentInfo);
+
       }
   }
-    
 }
-
 /*
 Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
@@ -66,3 +76,4 @@ function addPagination(list) {
 
 
 // Call functions
+showPage(data, 1);
