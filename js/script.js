@@ -119,6 +119,8 @@ addPagination(data);
 Exceeds Expectation portion of the project:
  Create/Append a list of new students into the page with the searchStudent function into page that will take input from a user and match the letter 
 */
+
+//1 Display Search Form
 const searchForm = () => {
    const searchHeader = document.querySelector(".header");
    const searchLabel= document.createElement("label");
@@ -130,33 +132,33 @@ const searchForm = () => {
       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
       </label>
       `;
-
       searchHeader.appendChild(searchLabel);
    }
-
+//calls function to display
 searchForm();
 
-const searchBar = document.getElementById("search");
 
-let filteredStudents = []; 
+//2 Search Functionality 
+const searchInput = document.getElementById("search");
 
-searchBar.addEventListener("keyup", (e) => {
+function searchStudent(searchInput, list) {
+   //Store new array of students in filteredStudents 
+   let filteredStudents = []; 
 
-   const filteredString = e.target.value.toLowerCase();
+   //When search is executed, filter out students name that "include" names with the "value" shown
 
-   const filteredNames = filteredStudents.filter( data => {
-      data.includes(filteredString);
+   searchInput.addEventListener("keyup", (e) => {
+      
+      //Case sensitive w/ partial matches and value of L and l will be included
+      let firstName = list[i].name.first.toLowerCase();
+      let lastName = list[i].name.last.toLowerCase();
+
+      //Filter by character ex. person with first name Bill or a person with last name Williams will be appear if fitlering for "LL" 
+      if (  firstName.includes(searchInput.value.toLowerCase()) || 
+            lastName.includes(searchInput.value.toLowerCase()) ) {
+         filteredStudents.push(list[i]);
+      };
 
    });
-   console.log(filteredNames);
-
-});
-
-/*
-When search is executed, filter out students name that "include" names with the "value" shown
-
-Case sensitive w/ partial matches and value of L and l will be included
-
-Filter by character ex. person with first name Bill or a person with last name Williams will be appear if fitlering for "LL" 
-
-*/
+   showPage(filteredStudents, 1);
+}
