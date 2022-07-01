@@ -114,3 +114,49 @@ const addPagination = (list) => {
 // Call functions
 showPage(data, 1);
 addPagination(data);
+
+/*
+Exceeds Expectation portion of the project:
+ Create/Append a list of new students into the page with the searchStudent function into page that will take input from a user and match the letter 
+*/
+const searchForm = () => {
+   const searchHeader = document.querySelector(".header");
+   const searchLabel= document.createElement("label");
+      searchLabel.innerHTML = 
+      `
+      <label for="search" class="student-search">
+      <span>Search by name</span>
+      <input id="search" placeholder="Search by name...">
+      <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
+      </label>
+      `;
+
+      searchHeader.appendChild(searchLabel);
+   }
+
+searchForm();
+
+const searchBar = document.getElementById("search");
+
+let filteredStudents = []; 
+
+searchBar.addEventListener("keyup", (e) => {
+
+   const filteredString = e.target.value.toLowerCase();
+
+   const filteredNames = filteredStudents.filter( data => {
+      data.includes(filteredString);
+
+   });
+   console.log(filteredNames);
+
+});
+
+/*
+When search is executed, filter out students name that "include" names with the "value" shown
+
+Case sensitive w/ partial matches and value of L and l will be included
+
+Filter by character ex. person with first name Bill or a person with last name Williams will be appear if fitlering for "LL" 
+
+*/
