@@ -141,7 +141,6 @@ searchForm();
 //2 Search Functionality 
 const searchInput = document.getElementById("search");
 
-function searchStudent(searchInput, list) {
    //Store new array of students in filteredStudents 
    let filteredStudents = []; 
 
@@ -160,5 +159,5 @@ function searchStudent(searchInput, list) {
       };
 
    });
-   showPage(filteredStudents, 1);
-}
+
+searchInput();
