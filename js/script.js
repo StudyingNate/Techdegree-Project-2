@@ -146,14 +146,15 @@ let newStudentList = [];
 
 //    a. See if individual student's data includes stored search input
 searchInput.addEventListener("keyup", (e) => {
-      const filterInput =  e.target.value;
+      const filterInput =  e.target.value.toLowerCase();
 
-       const filteredStudent = newStudentList.filter( student => {
-         return student.name.includes(filterInput) // || student.name.includes(filterInput);
-
+       const filteredStudent = data.filter( student => {
+          return student.name.first.toLowerCase().includes(filterInput) || student.name.last.toLowerCase().includes(filterInput);
+         
          });
-   console.log(filteredStudent);
-})
+         newStudentList = filteredStudent;
+         showPage(newStudentList, 1);
+});
 
 
 //    b. If individual student's data includes stored search input, add that student to new list of students
