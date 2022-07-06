@@ -123,8 +123,8 @@ Exceeds Expectation portion of the project:
 //1 Display Search Form
 const searchForm = () => {
    const searchHeader = document.querySelector(".header");
-   const searchLabel= document.createElement("label");
-      searchLabel.innerHTML = 
+   const searchLabel = document.createElement("label");
+   searchLabel.innerHTML =
       `
       <label for="search" class="student-search">
       <span>Search by name</span>
@@ -132,32 +132,29 @@ const searchForm = () => {
       <button type="button"><img src="img/icn-search.svg" alt="Search icon"></button>
       </label>
       `;
-      searchHeader.appendChild(searchLabel);
-   }
+   searchHeader.appendChild(searchLabel);
+}
 //calls function to display
 searchForm();
 
 
 //2 Search Functionality 
+
+// 1. Take/store search input
 const searchInput = document.getElementById("search");
+let newStudentList = [];
 
-   //Store new array of students in filteredStudents 
-   let filteredStudents = []; 
+//    a. See if individual student's data includes stored search input
+searchInput.addEventListener("keyup", (e) => {
+      const filterInput =  e.target.value;
 
-   //When search is executed, filter out students name that "include" names with the "value" shown
+       const filteredStudent = newStudentList.filter( student => {
+         return student.name.includes(filterInput) // || student.name.includes(filterInput);
 
-   searchInput.addEventListener("keyup", (e) => {
-      
-      //Case sensitive w/ partial matches and value of L and l will be included
-      let firstName = list[i].name.first.toLowerCase();
-      let lastName = list[i].name.last.toLowerCase();
+         });
+   console.log(filteredStudent);
+})
 
-      //Filter by character ex. person with first name Bill or a person with last name Williams will be appear if fitlering for "LL" 
-      if (  firstName.includes(searchInput.value.toLowerCase()) || 
-            lastName.includes(searchInput.value.toLowerCase()) ) {
-         filteredStudents.push(list[i]);
-      };
 
-   });
-
-searchInput();
+//    b. If individual student's data includes stored search input, add that student to new list of students
+// 3. After loop ends, call showPage function with new list of students as first argument
