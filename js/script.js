@@ -111,6 +111,9 @@ const addPagination = (list) => {
    }
 }
 
+// Call functions
+showPage(data, 1);
+addPagination(data);
 
 /*
 Exceeds Expectation portion of the project:
@@ -155,7 +158,7 @@ searchInput.addEventListener("keyup", (e) => {
    showPage(newStudentList, 1);
    addPagination(newStudentList);
 
-   // Displays "No Results" on the page when newStudentList does not match with any student.
+   // Displays "No Results" on the page when newStudentList returns 0 matches. 
    if (newStudentList.length === 0) {
       const noResults = document.querySelector('.student-list');
       noResults.innerHTML += `<li class="no-results">No results.</li>`;
@@ -163,6 +166,3 @@ searchInput.addEventListener("keyup", (e) => {
 });
 
 
-// Call functions
-showPage(data, 1);
-addPagination(data);
