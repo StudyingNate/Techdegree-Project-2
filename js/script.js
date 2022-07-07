@@ -111,9 +111,6 @@ const addPagination = (list) => {
    }
 }
 
-// Call functions
-showPage(data, 1);
-addPagination(data);
 
 /*
 Exceeds Expectation portion of the project:
@@ -140,31 +137,32 @@ searchForm();
 
 //2 Search Functionality 
 
-// 1. Take/store search input
+// 1. Select the search bar element and create an empty array to insert the data of the filtered students.
 const searchInput = document.getElementById("search");
 let newStudentList = [];
 
-//    a. See if individual student's data includes stored search input
+//    a. Event listner to filter out students based on the key characters provided to the search bar.
 searchInput.addEventListener("keyup", (e) => {
-   const filterInput = e.target.value.toLowerCase();
+   const filterInput = e.target.value.toLowerCase()
+
    //    b. If individual student's data includes stored search input, add that student to new list of students
    const filteredStudent = data.filter(student => {
-      return student.name.first.toLowerCase().includes(filterInput) || student.name.last.toLowerCase().includes(filterInput)
-      
-      
+      return student.name.first.toLowerCase().includes(filterInput) || student.name.last.toLowerCase().includes(filterInput);
    });
-      // 3. After loop ends, call showPage function with new list of students as first argument
 
+   // 3. After loop ends, call showPage function with new list of students as first argument
    newStudentList = filteredStudent;
    showPage(newStudentList, 1);
    addPagination(newStudentList);
 
+   // Displays "No Results" on the page when newStudentList does not match with any student.
+   if (newStudentList.length === 0) {
+      const noResults = document.querySelector('.student-list');
+      noResults.innerHTML += `<li class="no-results">No results.</li>`;
+   }
 });
 
 
-if (newStudentList.length === 0) {
-   const noResults = document.write.querySelector('.student-list').innerHTML = "";
-   noResults.innerHTML = `<h3>No results</h3>`;
-}
- 
-
+// Call functions
+showPage(data, 1);
+addPagination(data);
