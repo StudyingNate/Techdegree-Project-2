@@ -146,16 +146,25 @@ let newStudentList = [];
 
 //    a. See if individual student's data includes stored search input
 searchInput.addEventListener("keyup", (e) => {
-      const filterInput =  e.target.value.toLowerCase();
+   const filterInput = e.target.value.toLowerCase();
+   //    b. If individual student's data includes stored search input, add that student to new list of students
+   const filteredStudent = data.filter(student => {
+      return student.name.first.toLowerCase().includes(filterInput) || student.name.last.toLowerCase().includes(filterInput)
+      
+      
+   });
+      // 3. After loop ends, call showPage function with new list of students as first argument
 
-       const filteredStudent = data.filter( student => {
-          return student.name.first.toLowerCase().includes(filterInput) || student.name.last.toLowerCase().includes(filterInput);
-         
-         });
-         newStudentList = filteredStudent;
-         showPage(newStudentList, 1);
+   newStudentList = filteredStudent;
+   showPage(newStudentList, 1);
+   addPagination(newStudentList);
+
 });
 
 
-//    b. If individual student's data includes stored search input, add that student to new list of students
-// 3. After loop ends, call showPage function with new list of students as first argument
+if (newStudentList.length === 0) {
+   const noResults = document.write.querySelector('.student-list').innerHTML = "";
+   noResults.innerHTML = `<h3>No results</h3>`;
+}
+ 
+
